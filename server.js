@@ -7,8 +7,9 @@ const port = process.env.PORT || 3000;
 app.get('/', (req, res) => {
   var os = p(req.get('User-Agent')).os;
   var lang = req.get('Accept-Language').split(',')[0];
+  //console.log(req.get('X-Forwarded-For'));
   var resObj = {
-    ipaddress: req.ip,
+    ipaddress: req.get('X-Forwarded-For'),
     language: lang,
     software: `${os.name} ${os.version}`
   }
